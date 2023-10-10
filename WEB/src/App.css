@@ -1,0 +1,29 @@
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  h1,
+  h2 {
+    text-align: center;
+    font-size: 2em;
+  }
+  
+  form {
+    width: 50%;
+    margin: 0 auto;
+  }
+  
+  input {
+    width: 100%;
+    height: 2em;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    text-align: center;
+  }
+  

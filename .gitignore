@@ -1,2 +1,6 @@
 Projet_Annuel_IA_MIA4.pdf
 .venv
+data
+.env
+WEB/node_modules
+venv
