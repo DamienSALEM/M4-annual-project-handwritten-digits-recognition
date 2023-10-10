@@ -3,8 +3,8 @@ import axios from "axios";
 
 const App = () => {
   const [image, setImage] = useState(null);
+  const [imageResult, setImageResult] = useState(null);
   const [prediction, setPrediction] = useState(null);
-  const [confidence, setConfidence] = useState(null);
   const [drawing, setDrawing] = useState(false);
 
   const canvasRef = useRef(null);
@@ -32,8 +32,17 @@ const App = () => {
     setDrawing(false);
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
-    const imageData = context.getImageData(0, 0, 280, 280);
-    setImage(imageData);
+    const scaledCanvas = document.createElement("canvas");
+    const scaledContext = scaledCanvas.getContext("2d");
+
+    scaledCanvas.width = 28;
+    scaledCanvas.height = 28;
+
+    scaledContext.drawImage(canvas, 0, 0, 28, 28);
+
+    const imageDataURL = scaledCanvas.toDataURL("image/png");
+    
+    setImage(imageDataURL);
   };
 
   const resetCanvas = () => {
@@ -43,11 +52,13 @@ const App = () => {
   };
 
   const handleSubmit = () => {
+    endDrawing();
+    console.log(image);
     axios
-      .post("/predict", { image })
+      .post("http://localhost:8000/api/interrogate", { image })
       .then((response) => {
         setPrediction(response.data.prediction);
-        setConfidence(response.data.confidence);
+        setImageResult(response.data.image);
       })
       .catch((error) => {
         console.error(error);
@@ -67,13 +78,13 @@ const App = () => {
           onMouseDown={startDrawing}
           onMouseMove={draw}
           onMouseUp={endDrawing}
-          onMouseLeave={endDrawing}
+          onMouseOut={endDrawing}
         />
+        <img src={imageResult} alt="result" />
       </div>
       <button onClick={handleSubmit}>Predict</button>
       <button onClick={resetCanvas}>Reset Canvas</button> 
       <p>Prediction: {prediction}</p>
-      <p>Confidence: {confidence}</p>
     </div>
   );
 };
