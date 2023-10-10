@@ -6,7 +6,6 @@ from sklearn.model_selection import RandomizedSearchCV, train_test_split
 import os
 import joblib
 
-# Chemins
 DATA_PATH = "./data/train.csv"
 MODEL_RF_PATH = "./models/random_forest_model.pkl"
 MODEL_CNN_PATH = "./models/cnn_model.h5"
@@ -47,7 +46,6 @@ def train_and_save_rf(x_train, y_train, x_val, y_val):
     random_search_rf = RandomizedSearchCV(estimator=rf, param_distributions=param_distributions_rf, n_iter=10, cv=3, verbose=2)
     random_search_rf.fit(x_train.reshape(-1, 28*28), y_train)
 
-    # Sauvegarde du modèle RF optimisé
     joblib.dump(random_search_rf.best_estimator_, MODEL_RF_PATH)
     print(f"RandomForest Model saved to {MODEL_RF_PATH}")
 
