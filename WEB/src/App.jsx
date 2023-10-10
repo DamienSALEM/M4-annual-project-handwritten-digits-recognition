@@ -32,9 +32,17 @@ const App = () => {
     setDrawing(false);
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
-    const imageData = context.getImageData(0,0,28,28);
-    const data = imageData.data;
-    setImage(data);
+    const scaledCanvas = document.createElement("canvas");
+    const scaledContext = scaledCanvas.getContext("2d");
+
+    scaledCanvas.width = 28;
+    scaledCanvas.height = 28;
+
+    scaledContext.drawImage(canvas, 0, 0, 28, 28);
+
+    const imageDataURL = scaledCanvas.toDataURL("image/png");
+    
+    setImage(imageDataURL);
   };
 
   const resetCanvas = () => {
