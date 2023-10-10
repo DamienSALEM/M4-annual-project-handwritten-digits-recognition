@@ -1,25 +1,12 @@
-import numpy as np
 import pandas as pd
+from sklearn.model_selection import train_test_split
 
-def load_mnist_data():
-    # Chargement des données depuis train.csv
-    df = pd.read_csv("data/train.csv")
+def load_mnist_data(train_path):
+    train_data = pd.read_csv(train_path)
+    y_train = train_data["label"].values
+    x_train = train_data.drop(columns=["label"]).values.reshape(-1, 28, 28, 1) / 255.0
     
-    # La première colonne est l'étiquette (label)
-    y_train = df['label'].values
+    # Diviser les données pour créer un ensemble de test.
+    x_train, x_test, y_train, y_test = train_test_split(x_train, y_train, test_size=0.2, random_state=42)
     
-    # Les autres colonnes sont les pixels de l'image
-    x_train = df.drop(columns=['label']).values.reshape(-1, 28, 28, 1)
-
-    # Normaliser les images pour avoir des valeurs entre 0 et 1
-    x_train = x_train.astype('float32') / 255.0
-    
-    # Pour cette démo, nous divisons simplement les données d'entraînement pour avoir un set de test.
-    # Dans un scénario réel, vous devriez utiliser les données de `test.csv` ou diviser `train.csv` en ensembles d'entraînement et de validation.
-    split_size = int(0.9 * len(x_train))
-    x_test = x_train[split_size:]
-    y_test = y_train[split_size:]
-    x_train = x_train[:split_size]
-    y_train = y_train[:split_size]
-
     return x_train, y_train, x_test, y_test
