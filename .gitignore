@@ -4,3 +4,4 @@ data
 .env
 WEB/node_modules
 venv
+db.sqlite3
