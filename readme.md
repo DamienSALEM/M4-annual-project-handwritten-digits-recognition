@@ -1,6 +1,6 @@
 # Projet fin d'année de M1 IPSSI
 
-Un projet d'application pour l'entreprise Solaris Tour qui organise des voyage touristique à travers le système solaire
+Projet de Machine Learning / Deep Learning pour la reconnaissance de chiffres écrits à la main.
 
 ## Participants
 
@@ -16,4 +16,14 @@ _pip install -r requirements.txt_
 React
 MongoDB
 
+## Comment installer le projet?
+
 ## Points principaux
+
+### FRONT
+
+### API
+
+### Machine Learning / Deep Learning
+
+### Base de données
