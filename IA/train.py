@@ -5,9 +5,9 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import RandomizedSearchCV, train_test_split
 import joblib
 
-DATA_PATH = "./data/train.csv"
+DATA_PATH = "./train.csv"
 MODEL_RF_PATH = "./models/random_forest_model.pkl"
-MODEL_CNN_PATH = "./models/cnn_model.h5"
+MODEL_CNN_PATH = "models/cnn_model.h5"
 
 
 def load_mnist_data():
@@ -52,7 +52,7 @@ def train_and_save_cnn(x_train, y_train, x_val, y_val):
     # "sparse" est une variante spéciale qui est utile lorsque vos étiquettes sont des entiers
     model.compile(optimizer='adam',
                   loss='sparse_categorical_crossentropy', metrics=['accuracy'])
-    model.fit(x_train, y_train, epochs=5, batch_size=32,
+    model.fit(x_train, y_train, epochs=12, batch_size=1024,
               validation_data=(x_val, y_val))
     model.save(MODEL_CNN_PATH)
     print(f"CNN Model saved to {MODEL_CNN_PATH}")
@@ -85,4 +85,4 @@ if __name__ == "__main__":
     x_train, y_train, x_val, y_val = load_mnist_data()
 
     train_and_save_cnn(x_train, y_train, x_val, y_val)
-    train_and_save_rf(x_train, y_train, x_val, y_val)
+    # train_and_save_rf(x_train, y_train, x_val, y_val)
