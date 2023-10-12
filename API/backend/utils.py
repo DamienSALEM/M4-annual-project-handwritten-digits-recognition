@@ -10,5 +10,7 @@ def transform_image_png_to_pixels(image_png):
     image = Image.open(io.BytesIO(image))
     image = image.resize((28, 28))
     image = image.convert('L')
-    pixels = list(image.getdata())
-    return pixels
+    image_np = np.array(image)
+    image_np = image_np.astype('float32') / 255.0
+    image_np = image_np.reshape(1, 28, 28, 1)
+    return image_np
