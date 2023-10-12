@@ -15,7 +15,7 @@ Python 3.11
 React
 MongoDB
 
-## Comment installer le projet?
+## Comment installer et lancer le projet?
 
 Récupérer le .env et le mettre dans le backend
 _cd projet annuel_
