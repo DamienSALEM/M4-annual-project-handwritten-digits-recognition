@@ -15,6 +15,11 @@ Python 3.11
 React
 MongoDB
 
+## Liens du projet
+
+https://trello.com/b/415rc4vu/suivi-de-projet
+https://github.com/DamienSALEM/M4-annual-project-handwritten-digits-recognition.git
+
 ## Comment installer et lancer le projet?
 
 Récupérer le .env et le mettre dans le backend
@@ -45,6 +50,7 @@ API en django, 1 route qui récupère l'image du front, transforme l'image en do
 
 2 algos retenus, random forest et CNN.
 Pour le random forest, la fonction RandozimedSearchCV a été utilisé pour chercher les meilleurs hyper paramètres.
+Le CNN a une meilleur précision mais demande plus de temps pour les prédictions tandis que le random forest est moins précis mais donne des prédictions plus rapidement.
 Le modèle du random forest étant trop lourd, l'idée d'avoir 2 modèles a été abandonné.
 
 ### Base de données
