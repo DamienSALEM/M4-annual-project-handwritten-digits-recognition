@@ -6,3 +6,4 @@ WEB/node_modules
 venv
 db.sqlite3
 random_forest_model.pkl
+__pycache__
