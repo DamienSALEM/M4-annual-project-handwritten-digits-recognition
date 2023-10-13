@@ -2,6 +2,7 @@ import React, {useRef, useState} from "react";
 import axios from "axios";
 import "./App.css";
 
+
 const App = () => {
     const [image, setImage] = useState(null);
     const [prediction, setPrediction] = useState(null);
@@ -61,7 +62,7 @@ const App = () => {
     const handleSubmit = () => {
         endDrawing();
         axios
-            .post("http://localhost:8000/api/interrogate", {image})
+            .post(`${import.meta.env.VITE_BACKEND_URL}/api/interrogate`, {image})
             .then((response) => {
                 setPrediction(response.data.predictedClasses);
                 setProbabilities(response.data.predictedProbability);
