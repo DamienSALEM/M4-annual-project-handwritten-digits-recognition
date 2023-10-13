@@ -1,0 +1,10 @@
+FROM node:18
+WORKDIR /usr/src/app
+RUN git clone https://github.com/DamienSALEM/M4-annual-project-handwritten-digits-recognition.git
+WORKDIR /usr/src/app/WEB
+COPY ./.env ./
+COPY ./package.json ./
+COPY ./package-lock.json ./
+RUN npm install
+
+CMD [ "npm", "run", "dev","--host", "0.0.0.0" ]

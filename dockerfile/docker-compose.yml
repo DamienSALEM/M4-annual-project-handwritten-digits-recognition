@@ -1,0 +1,29 @@
+version: '3'
+networks:
+  mynetwork:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.0.50.0/24
+      
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: dockerfile
+    networks:
+      - mynetwork
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: dockerfile
+    networks:
+      - mynetwork 
+    ports:
+      - "8000:8000"
