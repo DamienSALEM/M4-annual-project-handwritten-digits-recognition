@@ -57,3 +57,6 @@ Le modèle du random forest étant trop lourd, l'idée d'avoir 2 modèles a ét�
 
 Base de données sur Mongo Atlas avec accès par pymongo (librairie python).
 1 collection avec l'image et la prédiction du modèle.
+
+### Docker
+Mise en place d'un fichier docker-compose.yaml et des dockerfile pour déployer l'application
